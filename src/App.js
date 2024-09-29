@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import CenterImage from "./Components/CenterImage";
+import Navbar from "./Components/Navbar";
+import ProductCard from "./Components/ProductCard";
 function App() {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const data = async () => {
+      const productsPromise = await fetch(
+        "https://officialsubham.github.io/e-commerce-backend/products.js"
+      );
+
+      const products = await productsPromise.json();
+      setProducts(products);
+    };
+    data();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <CenterImage />
+      <div className="container">
+        <div className="row row-cols-auto">
+          {products.map((productsData) => {
+            return (
+              <ProductCard
+                name={productsData.name}
+                rating={productsData.rating.stars}
+                imageurl={productsData.image}
+                price={productsData.priceCents}
+                key={productsData.id}
+                id={productsData.id}
+                review={productsData.rating.count}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
