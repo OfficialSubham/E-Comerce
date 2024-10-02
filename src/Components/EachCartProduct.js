@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ProductContext from "../Context/ProductContext/ProductContext";
 
 const EachCartProduct = (props) => {
@@ -6,10 +6,7 @@ const EachCartProduct = (props) => {
   const {
     products,
     handleCart,
-    decreaseQuantity,
-    setTotalAmount,
-    totalAmount,
-    cartItems,
+    decreaseQuantity
   } = useContext(ProductContext);
   let item = products.filter((item) => item.id === productDetails.id);
   let { image, name, priceCents } = item[0];
@@ -74,7 +71,7 @@ const EachCartProduct = (props) => {
           <input
             type="text"
             className="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[118px] min-w-[80px] placeholder:text-gray-900 py-[15px] text-center bg-transparent"
-            placeholder={productDetails.quantity}
+            value={productDetails.quantity}
           />
           <button
             className="group rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50"
