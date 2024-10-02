@@ -3,7 +3,7 @@ import ProductContext from "../Context/ProductContext/ProductContext";
 import EachCartProduct from "./EachCartProduct";
 
 const Cart = () => {
-  const {cartItems} = useContext(ProductContext)
+  const {cartItems, totalAmount} = useContext(ProductContext)
 
   return (
     <section className="py-24 relative">
@@ -46,7 +46,7 @@ const Cart = () => {
               Total
             </p>
             <h6 className="font-manrope font-medium text-2xl leading-9 text-indigo-500">
-              $405.00
+              ${totalAmount}
             </h6>
           </div>
         </div>

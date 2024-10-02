@@ -8,7 +8,7 @@ const ProductState = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [productIdWithQuantity, setProductIdWithQuantity] = useState([]);
   let [quantity, setQuantity] = useState(0);
-
+  const [totalAmount, setTotalAmount] = useState(0);
   const handleCart = (id) => {
     let isProduct = cartItems.find((item) => item.id === id);
     if (isProduct) {
@@ -36,11 +36,15 @@ const ProductState = (props) => {
   };
 
   useEffect(() => {
+    let totalPrice = 0;
     let totalQuantity = 0;
     cartItems.forEach((product) => {
       totalQuantity += product.quantity;
+      let oneProduct = products.filter(pDetails => product.id === pDetails.id);
+      totalPrice += ((oneProduct[0].priceCents / 100) * product.quantity)
     });
     setQuantity(totalQuantity);
+    setTotalAmount(totalPrice.toFixed(2))
   }, [cartItems]);
 
   return (
@@ -59,6 +63,8 @@ const ProductState = (props) => {
         setCartItems,
         quantity,
         decreaseQuantity,
+        totalAmount,
+        setTotalAmount
       }}
     >
       {props.children}

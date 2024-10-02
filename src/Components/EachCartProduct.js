@@ -1,13 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ProductContext from "../Context/ProductContext/ProductContext";
 
 const EachCartProduct = (props) => {
-  const {productDetails} = props
-  const {products, handleCart, decreaseQuantity} = useContext(ProductContext)
-  let item = products.filter(item => item.id === productDetails.id);
-  console.log(item[0]);
-  let {image, name, priceCents} = item[0]
-  console.log(image);
+  const { productDetails } = props;
+  const {
+    products,
+    handleCart,
+    decreaseQuantity,
+    setTotalAmount,
+    totalAmount,
+    cartItems,
+  } = useContext(ProductContext);
+  let item = products.filter((item) => item.id === productDetails.id);
+  let { image, name, priceCents } = item[0];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 min-[550px]:gap-6 border-t border-gray-200 py-6">
       <div className="flex items-center flex-col min-[550px]:flex-row gap-3 min-[550px]:gap-6 w-full max-xl:justify-center max-xl:max-w-xl max-xl:mx-auto">
@@ -28,9 +34,13 @@ const EachCartProduct = (props) => {
         </div>
       </div>
       <div className="flex items-center flex-col min-[550px]:flex-row w-full max-xl:max-w-xl max-xl:mx-auto gap-2">
-        
         <div className="flex items-center w-full mx-auto justify-center">
-          <button className="group rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50" onClick={() => {decreaseQuantity(productDetails.id)}}>
+          <button
+            className="group rounded-l-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50"
+            onClick={() => {
+              decreaseQuantity(productDetails.id);
+            }}
+          >
             <svg
               className="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
               xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +76,12 @@ const EachCartProduct = (props) => {
             className="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[118px] min-w-[80px] placeholder:text-gray-900 py-[15px] text-center bg-transparent"
             placeholder={productDetails.quantity}
           />
-          <button className="group rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50" onClick={() => {handleCart(productDetails.id)}}>
+          <button
+            className="group rounded-r-full px-6 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:shadow-gray-200 hover:border-gray-300 hover:bg-gray-50"
+            onClick={() => {
+              handleCart(productDetails.id);
+            }}
+          >
             <svg
               className="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
               xmlns="http://www.w3.org/2000/svg"
