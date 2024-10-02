@@ -29,7 +29,7 @@ function App() {
   // console.log(images);
   return (
     <>
-      <Router basename="/E-Comerce">
+      <Router >
         <Navbar />
         <Routes>
           <Route
