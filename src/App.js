@@ -33,7 +33,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route
-            path="/E-Commerce"
+            path="/"
             element={
               <>
                 {currentImage[1] && <CenterImage products={products} />}
@@ -56,7 +56,7 @@ function App() {
               </>
             }
           />
-          <Route path="/E-Commerce/cart" element={<Cart/>}/>
+          <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </Router>
     </>
