@@ -29,11 +29,11 @@ function App() {
   // console.log(images);
   return (
     <>
-      <Router>
+      <Router basename="/E-Commerce">
         <Navbar />
         <Routes>
           <Route
-            path="/"
+            path="/E-Commerce"
             element={
               <>
                 {currentImage[1] && <CenterImage products={products} />}
@@ -56,7 +56,7 @@ function App() {
               </>
             }
           />
-          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/E-Commerce/cart" element={<Cart/>}/>
         </Routes>
       </Router>
     </>
